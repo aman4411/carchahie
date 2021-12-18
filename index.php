@@ -13,9 +13,7 @@
 
         <div class="row tab-content mt-3">
             <div class="tab-pane fade show active" id="customer-register-tab" role="tabpanel" aria-labelledby="tab-1">
-                <form class="col-12 col-md-8 col-lg-8 col-xl-6" id="customerRegisterForm" method="POST" 
-                      action="./customer/customer-register.php"
-                      onsubmit="return validateCustomerRegisterForm();">
+                <form class="col-12 col-md-8 col-lg-8 col-xl-6" id="customer-register-form" onsubmit="validateCustomerRegisterForm(event)">
                     <div class="row">
                         <div class="col text-center mt-3">
                             <h3>Customer Register</h3>
@@ -43,16 +41,18 @@
                     <div class="row justify-content-start mt-4">
                         <div class="col">
                             <span class="text-danger" id="customer-register-form-error">*Error</span>
-                            <button class="btn btn-primary mt-3">Register</button>
+                            <button class="btn btn-primary mt-3" type="submit" id="customer-register-button">Register</button>
+                            <button id="customer-register-loading-button" class="btn btn-primary mt-3" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Loading...
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
 
             <div class="tab-pane fade show" id="agency-register-tab" role="tabpanel" aria-labelledby="tab-1">
-                <form class="col-12 col-md-8 col-lg-8 col-xl-6" id="agencyRegisterForm"
-                      method="POST" action="./agency/agency-register.php"
-                      onsubmit="return validateAgencyRegisterForm()">
+                <form class="col-12 col-md-8 col-lg-8 col-xl-6" id="agency-register-form" onsubmit="validateAgencyRegisterForm(event)">
                     <div class="row">
                         <div class="col text-center mt-3">
                             <h3>Car Agency Register</h3>
@@ -80,7 +80,11 @@
                     <div class="row justify-content-start mt-4">
                         <div class="col">
                             <span class="text-danger" id="agency-register-form-error">*Error</span>
-                            <button class="btn btn-primary mt-3">Register</button>
+                            <button class="btn btn-primary mt-3" id="agency-register-button">Register</button>
+                            <button id="agency-register-loading-button" class="btn btn-primary mt-3" disabled>
+                                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                Loading...
+                            </button>
                         </div>
                     </div>
                 </form>
