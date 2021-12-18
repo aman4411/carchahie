@@ -1,3 +1,10 @@
+<?php
+$urls = array(
+    'Register' => 'index',
+    'Login' => 'login'
+)
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,19 +29,28 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
+
                 <div class="hori-selector">
                     <div class="left"></div>
                     <div class="right"></div>
                 </div>
-                <li class="nav-item active">
-                    <a class="nav-link" href="javascript:void(0);"><i class="fas fa-user-plus"></i>Register</a>
+
+                <?php
+                    foreach ($urls as $name => $url) {
+                        echo '<li ' . (($currentPage === $name) ? ' class="nav-item active" ' : 'nav-item') .
+                        '><a href="' . $url . '.php' . '">' . $name . '</a></li>';
+                    }
+                ?>
+
+                <!-- <li class="nav-item active">
+                    <a class="nav-link" href="../index.php"><i class="fas fa-user-plus"></i>Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="fas fa-sign-in-alt"></i></i>Login</a>
+                    <a class="nav-link" href="../login.php"><i class="fas fa-sign-in-alt"></i></i>Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                </li>
+                </li> -->
             </ul>
         </div>
     </nav>
