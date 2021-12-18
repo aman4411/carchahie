@@ -5,7 +5,7 @@
     //Server Side Validation 
 
     if(!isset($_POST['name']) || empty($_POST['name'])){
-        echo json_encode('Name is required');
+        echo ('Name is required');
         exit;
     } 
     if(!isset($_POST['email']) || empty($_POST['email'])){
