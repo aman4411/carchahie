@@ -1,9 +1,17 @@
 <?php
-$urls = array(
-    'Register' => 'index',
-    'Login' => 'login'
-)
-
+session_start();
+$urls = array();
+if(isset($_SESSION['email'])){
+    if($_SESSION['userRole'] == 'customer'){
+        $urls['Dashboard'] = '/customer/customer-dashboard';
+    }else if($_SESSION['userRole'] == 'agency'){
+        $urls['Dashboard'] = '/agency/agency-dashboard';
+    }
+    $urls['Logout'] = '/logout';
+}else{
+    $urls['Register'] = '/index';
+    $urls['Login'] = '/login';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

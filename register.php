@@ -1,11 +1,16 @@
 <?php  
 
+    if((isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'customer')){
+        header('Location: /customer/customer-dashboard.php');
+    }else if((isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'agency')){
+        header('Location: /agency/agency-dashboard.php');
+    }
+
     require_once './includes/dbconfig.php';
-    header('Content-Type : application/json');
     //Server Side Validation 
 
     if(!isset($_POST['name']) || empty($_POST['name'])){
-        echo ('Name is required');
+        echo json_encode('Name is required');
         exit;
     } 
     if(!isset($_POST['email']) || empty($_POST['email'])){

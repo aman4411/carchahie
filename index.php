@@ -1,5 +1,11 @@
-<?php $currentPage = 'index';
+<?php $currentPage = 'Register';
 include './includes/header.php'; 
+
+if((isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'customer')){
+    header('Location: /customer/customer-dashboard.php');
+}else if((isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'agency')){
+    header('Location: /agency/agency-dashboard.php');
+}
 ?>
 
 <section>
