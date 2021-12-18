@@ -15,6 +15,9 @@ i {
 	padding: 15px;
 	color: #fff;
 }
+.navbar-logo:hover{
+    color: #fff;
+}
 .navbar-mainbg{
 	background-color: #5161ce;
 	padding: 0px;
@@ -111,6 +114,17 @@ i {
     left: -25px;
 }
 
+.nav-pills .nav-link.active{
+    background-color: #5161ce;
+}
+
+.nav-link{
+    color: #5161ce;
+}
+
+.btn-primary{
+    background-color: #5161ce;
+}
 
 @media(min-width: 992px){
 	.navbar-expand-custom {
