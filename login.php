@@ -1,4 +1,4 @@
-<?php $currentPage="login";
+<?php $currentPage="Login";
 include './includes/header.php'; ?>
 
 <section>
@@ -14,7 +14,7 @@ include './includes/header.php'; ?>
 
         <div class="row tab-content mt-3">
             <div class="tab-pane fade show active" id="customer-login-tab" role="tabpanel" aria-labelledby="tab-1">
-                <form class="col-12 col-md-8 col-lg-8 col-xl-6" id="customer-register-form" onsubmit="validateCustomerRegisterForm(event)">
+                <form class="col-12 col-md-8 col-lg-8 col-xl-6" id="customer-login-form" onsubmit="validateCustomerLoginForm(event)">
                     <div class="row">
                         <div class="col text-center mt-3">
                             <h3>Customer Login</h3>
@@ -32,9 +32,9 @@ include './includes/header.php'; ?>
                     </div>
                     <div class="row justify-content-start mt-4">
                         <div class="col">
-                            <span class="text-danger" id="customer-register-form-error">*Error</span>
-                            <button class="btn btn-primary mt-3" type="submit" id="customer-register-button">Login</button>
-                            <button id="customer-register-loading-button" class="btn btn-primary mt-3" disabled>
+                            <span class="text-danger" id="customer-login-form-error">*Error</span>
+                            <button class="btn btn-primary mt-3" type="submit" id="customer-login-button">Login</button>
+                            <button id="customer-login-loading-button" class="btn btn-primary mt-3" disabled>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Loading...
                             </button>
@@ -44,7 +44,7 @@ include './includes/header.php'; ?>
             </div>
 
             <div class="tab-pane fade show" id="agency-login-tab" role="tabpanel" aria-labelledby="tab-1">
-                <form class="col-12 col-md-8 col-lg-8 col-xl-6" id="agency-register-form" onsubmit="validateAgencyRegisterForm(event)">
+                <form class="col-12 col-md-8 col-lg-8 col-xl-6" id="agency-login-form" onsubmit="validateAgencyLoginForm(event)">
                     <div class="row">
                         <div class="col text-center mt-3">
                             <h3>Agency Login</h3>
@@ -62,9 +62,9 @@ include './includes/header.php'; ?>
                     </div>
                     <div class="row justify-content-start mt-4">
                         <div class="col">
-                            <span class="text-danger" id="agency-register-form-error">*Error</span>
-                            <button class="btn btn-primary mt-3" id="agency-register-button">Login</button>
-                            <button id="agency-register-loading-button" class="btn btn-primary mt-3" disabled>
+                            <span class="text-danger" id="agency-login-form-error">*Error</span>
+                            <button class="btn btn-primary mt-3" id="agency-login-button">Login</button>
+                            <button id="agency-login-loading-button" class="btn btn-primary mt-3" disabled>
                                 <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Loading...
                             </button>

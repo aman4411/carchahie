@@ -4,7 +4,11 @@ form{
 #customer-register-form-error,
 #agency-register-form-error,
 #customer-register-loading-button,
-#agency-register-loading-button
+#agency-register-loading-button,
+#customer-login-form-error,
+#agency-login-form-error,
+#customer-login-loading-button,
+#agency-login-loading-button
 {
     display: none;
 }
