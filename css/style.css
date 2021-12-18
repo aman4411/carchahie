@@ -1,0 +1,10 @@
+form{
+    margin: 0 auto;
+}
+#customer-register-form-error{
+    display: none;
+}
+
+#agency-register-form-error{
+    display: none;
+}
