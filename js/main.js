@@ -81,9 +81,9 @@ validateRegistration = (formData,errorMsg,userRole,loadingButton,registerButton)
             toggleButtonVisibilty(loadingButton,registerButton);
             showModal(response);
         },
-        error: function(error){
+        error: function(xhr,error){
            toggleButtonVisibilty(loadingButton,registerButton);
-           showModal('Some Error Occured. Please try again later.');
+           showModal(xhr.textResponse);
         }
      })
     return true;
