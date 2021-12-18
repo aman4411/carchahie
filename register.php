@@ -1,5 +1,6 @@
 <?php  
 
+    require_once './includes/dbconfig.php';
     header('Content-Type : application/json');
     //Server Side Validation 
 
@@ -29,8 +30,41 @@
         echo json_encode('Password should be of atleast 6 characters');
         exit;
     }
+
+    $conn = getDBConnection();
+
+    if($conn->connect_error){
+        die("ERROR: Could not connect. " . mysqli_connect_error());
+        echo json_encode('Some Error Occured. Please try again later.');
+    }else{
+        if(checkIfUserExists($conn,$email)){
+            echo json_encode('An account already exists with this email id');
+            exit;
+        }
+        $insertQuery = "INSERT INTO users (name, email, password,userRole) VALUES (?,?,?,?)";
+        $stmt= $conn->prepare($insertQuery);
+        $stmt->bind_param("ssss", $name, $email, $password, $userRole);
+        if($result = $stmt->execute()){
+            echo json_encode('Account Created Successfully. You can login now.');
+        }else{
+            echo json_encode($stmt->error);
+        }
+    }
     
-    echo json_encode('Account Created Successfully. You can login now.');
+    closeDbConnection($conn);
     exit;
    
+    function checkIfUserExists($conn,$email){
+        $selectQuery = "SELECT * from users where email=?";
+        $stmt = $conn->prepare($selectQuery); 
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result(); // get the mysqli result
+        $user = $result->fetch_assoc();
+        if($user){
+            return true;
+        }else{
+            return false;
+        }
+    }
 ?>

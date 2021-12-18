@@ -16,7 +16,7 @@
 
 
     <nav class="navbar navbar-expand-custom navbar-mainbg">
-        <a class="navbar-brand navbar-logo" href="#">Car Chahie</a>
+        <a class="navbar-brand navbar-logo" href="#"><i class="fas fa-car-side"></i>Car Chahie</a>
         <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars text-white"></i>
         </button>
