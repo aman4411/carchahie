@@ -54,16 +54,6 @@ if (isset($_SESSION['email'])) {
                         '><a href="' . $url . '.php' . '">' . $name . '</a></li>';
                 }
                 ?>
-
-                <!-- <li class="nav-item active">
-                    <a class="nav-link" href="../index.php"><i class="fas fa-user-plus"></i>Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="../login.php"><i class="fas fa-sign-in-alt"></i></i>Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="javascript:void(0);"><i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                </li> -->
             </ul>
         </div>
     </nav>

@@ -13,12 +13,13 @@ if ($conn->connect_error) {
     $result = $stmt->get_result();
 }
 
-function handleBookNowButtonClick(){
+function handleBookNowButtonClick($dbCar){
    if(isset($_SESSION['userRole'])){
        if($_SESSION['userRole'] == 'agency'){
            echo "promptyAgencyNotAllowedForBooking()";
        }else{
-           echo "handleBooking()";
+           $path = "'".'/customer/create-order.php?listingId='.$dbCar['listingId']."'";
+           echo "handleBooking(".$path.")";
        }
    }else{
        echo "redirectToLoginPage()";
@@ -49,7 +50,7 @@ function handleBookNowButtonClick(){
                     <h6 class="mt-3 text-center text-primary"><?php echo $dbCar['number'] ?></h6>
                     <p class="text-center">Capacity : <?php echo $dbCar['capacity'] ?> Person</p>
                     <p class="text-center text-danger">Rent : &#8377;<?php echo $dbCar['rent'] ?>/day</p>
-                    <button class="btn btn-primary" onclick="<?= handleBookNowButtonClick()?>">Book Now</button>
+                    <button class="btn btn-primary" onclick="<?= handleBookNowButtonClick($dbCar)?>">Book Now</button>
                 </div>
             </div>
         <?php

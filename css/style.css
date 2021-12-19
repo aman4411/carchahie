@@ -13,7 +13,9 @@ form{
 #add-car-loading-button,
 #update-car-form-error,
 #update-car-loading-button,
-#delete-car-loading-button
+#delete-car-loading-button,
+#order-car-form-error,
+#order-car-loading-button
 {
     display: none;
 }

@@ -181,3 +181,58 @@ confirmDeleteCarListing = (listingId) => {
         }
      })
 }
+
+validateOrderCarForm = (e,userId,listingId,listedBy) =>{
+    e.preventDefault();
+    let loadingButton = document.getElementById('order-car-loading-button');
+    let orderCarButton = document.getElementById('order-car-button');
+    let form = document.getElementById('order-car-form');
+    const formData = new FormData(form);
+    let errorMsg = document.getElementById('order-car-form-error');
+    validateCarOrder(formData,errorMsg,userId,listingId,listedBy,loadingButton,orderCarButton);
+}
+
+validateCarOrder = (formData,errorMsg,userId,listingId,listedBy,loadingButton,orderCarButton) => {
+
+    let startDate = formData.get('startDate');
+    let days = formData.get('days');
+
+    if(startDate == null || startDate == ''){
+        errorMsg.innerHTML = '*Booking Date is required';
+        errorMsg.style.display = 'block';
+        return;
+    }
+    if(days == null || days == ''){
+        errorMsg.innerHTML = '*Kindly choose days for many days you need the car on rent.';
+        errorMsg.style.display = 'block';
+        return;
+    }
+
+    debugger;
+
+    toggleButtonVisibilty(orderCarButton,loadingButton);
+    $.ajax({
+        url: "../handlers/createBookingHandler.php",
+        type: "POST",
+        dataType: "json",
+        data: {
+            customerId : userId,
+            agencyId : listedBy,
+            listingId : listingId,
+            bookingStartDate : startDate,
+            bookingDays : days
+        },
+        success: function(response){
+            toggleButtonVisibilty(loadingButton,orderCarButton);
+            if(response == 'Success'){
+                document.location.href = '../customer/customer-bookings.php';
+            }else{
+                showModal(response);
+            }     
+        },
+        error: function(xhr,error){
+           toggleButtonVisibilty(loadingButton,orderCarButton);
+           showModal(xhr.responseText);
+        }
+     })
+}
