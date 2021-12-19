@@ -1,4 +1,4 @@
-<?php $currentPage = "Dashboard";
+<?php $currentPage = "Add Car";
 include '../includes/header.php';
 
 if (!(isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'agency')) {

@@ -7,7 +7,7 @@ if(isset($_SESSION['email'])){
     if($_SESSION['userRole'] == 'customer'){
         $urls['Bookings'] = '/customer/customer-bookings';
     }else if($_SESSION['userRole'] == 'agency'){
-        $urls['Dashboard'] = '/agency/agency-dashboard';
+        $urls['Add Car'] = '/agency/agency-dashboard';
         $urls['Your Listings'] = '/agency/your-listings';
         $urls['Bookings'] = '/agency/agency-bookings'; 
     }
