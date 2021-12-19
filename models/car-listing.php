@@ -7,6 +7,7 @@ class CarListing{
     public $number;
     public $capacity;
     public $rent;
+    public $listingStatus;
 }
 
 ?>

@@ -126,6 +126,10 @@ i {
     background-color: #5161ce;
 }
 
+.text-primary{
+	color: #5161ce;
+}
+
 @media(min-width: 992px){
 	.navbar-expand-custom {
 	    -ms-flex-flow: row nowrap;
