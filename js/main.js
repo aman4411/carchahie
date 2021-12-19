@@ -79,13 +79,18 @@ validateRegistration = (formData,errorMsg,userRole,loadingButton,registerButton)
         },
         success: function(response){
             toggleButtonVisibilty(loadingButton,registerButton);
-            document.getElementById('customer-register-form').reset();
-            showModal(response);
+            if(response == 'Success'){
+                document.getElementById('customer-register-form').reset();
+                document.location.href = userRole == 'agency' ? '../agency/agency-dashboard.php' : '../index.php';
+            }else{
+                showModal(response);
+            }
         },
         error: function(xhr,error){
             toggleButtonVisibilty(loadingButton,registerButton);
             if(error == 'parsererror'){
-                showModal('Account created Successfully. You can login now.');
+                document.getElementById('customer-register-form').reset();
+                document.location.href = userRole == 'agency' ? '../agency/agency-dashboard.php' : '../index.php';
             }else{
                 showModal(xhr.responseText);
             } 
