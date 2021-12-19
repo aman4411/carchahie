@@ -48,8 +48,14 @@ if ($conn->connect_error) {
                     <td><?php echo $car['number'] ?></td>
                     <td><?php echo $car['capacity'] ?></td>
                     <td><?php echo $car['rent'] ?></td>
-                    <td><button class="btn btn-primary" onclick="location.href='./edit-listings.php?model=<?=$car['model']?>&number=<?=$car['number']?>&capacity=<?=$car['capacity']?>&rent=<?=$car['rent']?>&listingId=<?=$car['listingId']?>'">Edit</button></td>
-                    <td><button class="btn btn-danger" value="<?=$car['listingId']?>">Delete</button></td>
+                    <td><button class="btn btn-primary" onclick="location.href='./edit-listings.php?model=<?= $car['model'] ?>&number=<?= $car['number'] ?>&capacity=<?= $car['capacity'] ?>&rent=<?= $car['rent'] ?>&listingId=<?= $car['listingId'] ?>'">Edit</button></td>
+                    <td>
+                        <button id="delete-car-button" class="btn btn-danger" onclick="confirmDeleteCarListing(<?= $car['listingId'] ?>)">Delete</button>
+                        <button id="delete-car-loading-button" class="btn btn-primary mt-3" disabled>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Deleting...
+                        </button>
+                    </td>
                 </tr>
             <?php
             }
@@ -58,4 +64,5 @@ if ($conn->connect_error) {
     </table>
 </div>
 
+<script src="../js/car-listing.js"></script>
 <?php include '../includes/footer.php'; ?>
