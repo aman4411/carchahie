@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 
 ?>
 
-<div class="conatiner">
+<div class="conatiner mt-5">
     <img id="banner" src="./assets/logo.png" alt="">
 </div>
 

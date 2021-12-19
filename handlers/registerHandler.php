@@ -1,14 +1,14 @@
 <?php  
 
     include '../models/user.php';
+    require_once '../includes/dbconfig.php';
 
     if((isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'customer')){
         header('Location: /index.php');
     }else if((isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'agency')){
         header('Location: /agency/agency-dashboard.php');
     }
-
-    require_once './includes/dbconfig.php';
+    
     //Server Side Validation 
 
     if(!isset($_POST['name']) || empty($_POST['name'])){
