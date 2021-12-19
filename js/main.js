@@ -216,8 +216,8 @@ promptyAgencyNotAllowedForBooking = () => {
     showModal('Car Agencies are not allowed to book cars. Kindly login with your customer account.');
 }
 
-handleBooking = () => {
- console.log('book now');
+handleBooking = (path) => {
+    window.location.href = path;
 }
 
 redirectToLoginPage = () => {
