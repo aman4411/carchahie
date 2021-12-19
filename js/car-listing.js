@@ -155,3 +155,29 @@ validateUpdateCar = (formData,errorMsg,listingId,loadingButton,updateCarButton) 
      })
     return true;
 }
+
+confirmDeleteCarListing = (listingId) => {
+    let deleteCarButton = document.getElementById('delete-car-button');
+    let loadingButton = document.getElementById('delete-car-loading-button');
+    toggleButtonVisibilty(deleteCarButton,loadingButton);
+    $.ajax({
+        url: "../handlers/deleteCarHandler.php",
+        type: "POST",
+        dataType: "json",
+        data: {
+            listingId : listingId
+        },
+        success: function(response){
+            toggleButtonVisibilty(loadingButton,deleteCarButton);
+            if(response == 'Success'){
+                document.location.href = '../agency/your-listings.php';
+            }else{
+                showModal(response);
+            }     
+        },
+        error: function(xhr,error){
+           toggleButtonVisibilty(loadingButton,deleteCarButton);
+           showModal(xhr.responseText);
+        }
+     })
+}

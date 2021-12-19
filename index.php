@@ -13,6 +13,18 @@ if ($conn->connect_error) {
     $result = $stmt->get_result();
 }
 
+function handleBookNowButtonClick(){
+   if(isset($_SESSION['userRole'])){
+       if($_SESSION['userRole'] == 'agency'){
+           echo "promptyAgencyNotAllowedForBooking()";
+       }else{
+           echo "handleBooking()";
+       }
+   }else{
+       echo "redirectToLoginPage()";
+   }
+}
+
 ?>
 
 <div class="conatiner mt-5">
@@ -37,7 +49,7 @@ if ($conn->connect_error) {
                     <h6 class="mt-3 text-center text-primary"><?php echo $dbCar['number'] ?></h6>
                     <p class="text-center">Capacity : <?php echo $dbCar['capacity'] ?> Person</p>
                     <p class="text-center text-danger">Rent : &#8377;<?php echo $dbCar['rent'] ?>/day</p>
-                    <button class="btn btn-primary">Book Now</button>
+                    <button class="btn btn-primary" onclick="<?= handleBookNowButtonClick()?>">Book Now</button>
                 </div>
             </div>
         <?php

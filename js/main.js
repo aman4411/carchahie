@@ -186,7 +186,40 @@ showModal = (message) => {
     myModal.show();
 }
 
+showConfirmationModal = (message) => {
+    var modal = document.getElementById('confirm-modal');
+    modal.addEventListener('show.bs.modal', function (event) {
+        var modalBody = modal.querySelector('.modal-body p');
+        modalBody.textContent = message;
+    });
+    $("#confirm-modal").modal('show');
+}
+
+var modalConfirm = function(callback){
+    $("#modal-btn-yes").on("click", function(){
+      callback(true);
+      $("#confirm-modal").modal('hide');
+    });
+    
+    $("#modal-btn-no").on("click", function(){
+      callback(false);
+      $("#confirm-modal").modal('hide');
+    });
+  };
+
 toggleButtonVisibilty = (visibleButton,invisibleButton) =>{
     visibleButton.style.display = 'none';
     invisibleButton.style.display = 'block';
+}
+
+promptyAgencyNotAllowedForBooking = () => {
+    showModal('Car Agencies are not allowed to book cars. Kindly login with your customer account.');
+}
+
+handleBooking = () => {
+ console.log('book now');
+}
+
+redirectToLoginPage = () => {
+    window.location.href = '/login.php';
 }

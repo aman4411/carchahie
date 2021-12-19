@@ -3,16 +3,16 @@ session_start();
 $urls = array(
     'Home' => '/index'
 );
-if(isset($_SESSION['email'])){
-    if($_SESSION['userRole'] == 'customer'){
+if (isset($_SESSION['email'])) {
+    if ($_SESSION['userRole'] == 'customer') {
         $urls['Bookings'] = '/customer/customer-bookings';
-    }else if($_SESSION['userRole'] == 'agency'){
+    } else if ($_SESSION['userRole'] == 'agency') {
         $urls['Add Car'] = '/agency/agency-dashboard';
         $urls['Your Listings'] = '/agency/your-listings';
-        $urls['Bookings'] = '/agency/agency-bookings'; 
+        $urls['Bookings'] = '/agency/agency-bookings';
     }
     $urls['Logout'] = '/logout';
-}else{
+} else {
     $urls['Register'] = '/register';
     $urls['Login'] = '/login';
 }
@@ -36,7 +36,7 @@ if(isset($_SESSION['email'])){
 
 
     <nav class="navbar navbar-expand-custom navbar-mainbg">
-        <a class="navbar-brand navbar-logo" href="#"><i class="fas fa-car-side"></i>Car Chahie</a>
+        <a class="navbar-brand navbar-logo" href="/"><i class="fas fa-car-side"></i>Car Chahie</a>
         <button class="navbar-toggler" type="button" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fas fa-bars text-white"></i>
         </button>
@@ -49,10 +49,10 @@ if(isset($_SESSION['email'])){
                 </div>
 
                 <?php
-                    foreach ($urls as $name => $url) {
-                        echo '<li ' . (($currentPage === $name) ? ' class="nav-item active" ' : 'nav-item') .
+                foreach ($urls as $name => $url) {
+                    echo '<li ' . (($currentPage === $name) ? ' class="nav-item active" ' : 'nav-item') .
                         '><a href="' . $url . '.php' . '">' . $name . '</a></li>';
-                    }
+                }
                 ?>
 
                 <!-- <li class="nav-item active">
@@ -68,7 +68,7 @@ if(isset($_SESSION['email'])){
         </div>
     </nav>
 
-    <!-- Modal -->
+    <!-- Alert Modal -->
     <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
@@ -81,6 +81,25 @@ if(isset($_SESSION['email'])){
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal  -->
+    <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="confirmationModal" aria-hidden="true" id="confirm-modal">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Confirm</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Confirmation Message</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="modal-btn-yes">Yes</button>
+                    <button type="button" class="btn btn-primary" id="modal-btn-no">No</button>
                 </div>
             </div>
         </div>
