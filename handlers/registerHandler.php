@@ -1,6 +1,6 @@
 <?php  
 
-    include './models/user.php';
+    include '../models/user.php';
 
     if((isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'customer')){
         header('Location: /index.php');

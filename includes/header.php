@@ -8,7 +8,8 @@ if(isset($_SESSION['email'])){
         $urls['Bookings'] = '/customer/customer-bookings';
     }else if($_SESSION['userRole'] == 'agency'){
         $urls['Dashboard'] = '/agency/agency-dashboard';
-        $urls['Bookings'] = '/agency/agency-bookings';
+        $urls['Your Listings'] = '/agency/your-listings';
+        $urls['Bookings'] = '/agency/agency-bookings'; 
     }
     $urls['Logout'] = '/logout';
 }else{

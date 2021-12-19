@@ -1,7 +1,7 @@
 <?php  
 
-    require_once './includes/dbconfig.php';
-    include './models/user.php';
+    require_once '../includes/dbconfig.php';
+    include '../models/user.php';
     session_start();
 
     if(isset($_SESSION['userRole'])){
@@ -50,6 +50,7 @@
             $dbPassword = $dbUser['password'];
             $dbRole = $dbUser['userRole'];   
             if($dbPassword === $user->password && $dbRole === $user->userRole){
+                $_SESSION['userId'] = $dbUser['userId'];
                 $_SESSION['email'] = $user->email;
                 $_SESSION['userRole'] = $user->userRole;
                 echo json_encode('Success');

@@ -68,7 +68,7 @@ validateRegistration = (formData,errorMsg,userRole,loadingButton,registerButton)
     toggleButtonVisibilty(registerButton,loadingButton);
 
     $.ajax({
-        url: "../registerHandler.php",
+        url: "../handlers/registerHandler.php",
         type: "POST",
         dataType: "json",
         data: {
@@ -79,6 +79,7 @@ validateRegistration = (formData,errorMsg,userRole,loadingButton,registerButton)
         },
         success: function(response){
             toggleButtonVisibilty(loadingButton,registerButton);
+            document.getElementById('customer-register-form').reset();
             showModal(response);
         },
         error: function(xhr,error){
@@ -146,7 +147,7 @@ validateLogin = (formData,errorMsg,userRole,loadingButton,loginButton) => {
     toggleButtonVisibilty(loginButton,loadingButton);
 
     $.ajax({
-        url: "../loginHandler.php",
+        url: "../handlers/loginHandler.php",
         type: "POST",
         dataType: "json",
         data: {

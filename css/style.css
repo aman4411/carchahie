@@ -8,7 +8,9 @@ form{
 #customer-login-form-error,
 #agency-login-form-error,
 #customer-login-loading-button,
-#agency-login-loading-button
+#agency-login-loading-button,
+#add-car-form-error,
+#add-car-loading-button
 {
     display: none;
 }
