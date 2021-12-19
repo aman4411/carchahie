@@ -1,7 +1,13 @@
 <?php  
 
     require_once './includes/dbconfig.php';
+    include './models/user.php';
     session_start();
+
+    if(isset($_SESSION['userRole'])){
+        header('Location: ./index.php');
+    }
+
     //Server Side Validation 
 
     if(!isset($_POST['email']) || empty($_POST['email'])){
@@ -17,11 +23,13 @@
         exit;
     }
 
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $userRole = $_POST['userRole'];
+    $user = new User();
 
-    if(strlen($password) < 6){
+    $user->email = $_POST['email'];
+    $user->password = $_POST['password'];
+    $user->userRole = $_POST['userRole'];
+
+    if(strlen($user->password) < 6){
         echo json_encode('Password should be of atleast 6 characters');
         exit;
     }
@@ -34,16 +42,16 @@
     }else{
         $selectQuery = "SELECT * from users where email=? and userRole=?";
         $stmt = $conn->prepare($selectQuery); 
-        $stmt->bind_param("ss", $email,$userRole);
+        $stmt->bind_param("ss", $user->email,$user->userRole);
         $stmt->execute();
         $result = $stmt->get_result(); // get the mysqli result
-        $user = $result->fetch_assoc();
-        if($user){
-            $dbPassword = $user['password'];
-            $dbRole = $user['userRole'];   
-            if($dbPassword === $password && $dbRole === $userRole){
-                $_SESSION['email'] = $email;
-                $_SESSION['userRole'] = $userRole;
+        $dbUser = $result->fetch_assoc();
+        if($dbUser){
+            $dbPassword = $dbUser['password'];
+            $dbRole = $dbUser['userRole'];   
+            if($dbPassword === $user->password && $dbRole === $user->userRole){
+                $_SESSION['email'] = $user->email;
+                $_SESSION['userRole'] = $user->userRole;
                 echo json_encode('Success');
             }else{
                 echo json_encode('You have entered wrong password');

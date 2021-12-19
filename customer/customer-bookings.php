@@ -1,4 +1,4 @@
-<?php $currentPage="Dashboard";
+<?php $currentPage="Bookings";
 include '../includes/header.php';
 
 if(!(isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'customer')){
@@ -6,6 +6,6 @@ if(!(isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'customer')){
 }
 ?>
 
-<?php echo 'Customer Dashboard'; ?>
+<?php echo 'Customer Bookings'; ?>
 
 <?php include '../includes/footer.php'; ?>

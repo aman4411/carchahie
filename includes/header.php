@@ -1,18 +1,22 @@
 <?php
 session_start();
-$urls = array();
+$urls = array(
+    'Home' => '/index'
+);
 if(isset($_SESSION['email'])){
     if($_SESSION['userRole'] == 'customer'){
-        $urls['Dashboard'] = '/customer/customer-dashboard';
+        $urls['Bookings'] = '/customer/customer-bookings';
     }else if($_SESSION['userRole'] == 'agency'){
         $urls['Dashboard'] = '/agency/agency-dashboard';
+        $urls['Bookings'] = '/agency/agency-bookings';
     }
     $urls['Logout'] = '/logout';
 }else{
-    $urls['Register'] = '/index';
+    $urls['Register'] = '/register';
     $urls['Login'] = '/login';
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

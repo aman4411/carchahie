@@ -68,7 +68,7 @@ validateRegistration = (formData,errorMsg,userRole,loadingButton,registerButton)
     toggleButtonVisibilty(registerButton,loadingButton);
 
     $.ajax({
-        url: "../register.php",
+        url: "../registerHandler.php",
         type: "POST",
         dataType: "json",
         data: {
@@ -157,7 +157,7 @@ validateLogin = (formData,errorMsg,userRole,loadingButton,loginButton) => {
         success: function(response){
             toggleButtonVisibilty(loadingButton,loginButton);
             if(response == 'Success'){
-                window.location.href = userRole == 'customer' ? '../customer/customer-dashboard.php' : '../agency/agency-dashboard.php';
+                window.location.href = userRole == 'customer' ? '../index.php' : '../agency/agency-dashboard.php';
             }else{
                 showModal(response);
             }     
