@@ -21,7 +21,7 @@ if (!(isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'agency')) {
   </div>
   <div class="row align-items-center mt-4">
     <div class="col">
-      <input type="text" name="number" class="form-control" placeholder="Model Number">
+      <input type="text" name="number" class="form-control" placeholder="Vehicle Number">
     </div>
   </div>
   <div class="row align-items-center mt-4">

@@ -10,7 +10,9 @@ form{
 #customer-login-loading-button,
 #agency-login-loading-button,
 #add-car-form-error,
-#add-car-loading-button
+#add-car-loading-button,
+#update-car-form-error,
+#update-car-loading-button
 {
     display: none;
 }
@@ -74,4 +76,10 @@ form{
 }
 .card:hover::before, .card:hover::after, .card:focus::before, .card:focus::after {
     transform: scale3d(1, 1, 1);
+}
+
+thead{
+    background-color: #5161ce;
+    color: #fff;
+    border: 1px solid #5161ce;
 }
