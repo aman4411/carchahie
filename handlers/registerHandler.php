@@ -2,6 +2,7 @@
 
     include '../models/user.php';
     require_once '../includes/dbconfig.php';
+    session_start();
 
     if((isset($_SESSION['userRole']) && $_SESSION['userRole'] == 'customer')){
         header('Location: /index.php');
@@ -46,7 +47,8 @@
         die("ERROR: Could not connect. " . mysqli_connect_error());
         echo json_encode('Some Error Occured. Please try again later.');
     }else{
-        if(checkIfUserExists($conn,$user->email)){
+        $dbUser = getExistingUser($conn,$user->email,$user->userRole);
+        if($dbUser){
             echo json_encode('An account already exists with this email id');
             exit;
         }
@@ -54,7 +56,11 @@
         $stmt= $conn->prepare($insertQuery);
         $stmt->bind_param("ssss", $user->name, $user->email, $user->password, $user->userRole);
         if($result = $stmt->execute()){
-            echo json_encode('Account Created Successfully. You can login now.');
+            $dbUser = getExistingUser($conn,$user->email,$user->userRole);
+            $_SESSION['userId'] = $dbUser['userId'];
+            $_SESSION['email'] = $dbUser['email'];
+            $_SESSION['userRole'] = $dbUser['userRole'];
+            echo json_encode('Success');
         }else{
             echo json_encode($stmt->error);
         }
@@ -63,17 +69,13 @@
     closeDbConnection($conn);
     exit;
    
-    function checkIfUserExists($conn,$email){
-        $selectQuery = "SELECT * from users where email=?";
+    function getExistingUser($conn,$email,$userRole){
+        $selectQuery = "SELECT * from users where email=? and userRole=?";
         $stmt = $conn->prepare($selectQuery); 
-        $stmt->bind_param("s", $email);
+        $stmt->bind_param("ss", $email,$userRole);
         $stmt->execute();
         $result = $stmt->get_result(); // get the mysqli result
         $dbUser = $result->fetch_assoc();
-        if($dbUser){
-            return true;
-        }else{
-            return false;
-        }
+        return $dbUser;
     }
 ?>
