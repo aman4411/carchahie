@@ -40,9 +40,9 @@
         die("ERROR: Could not connect. " . mysqli_connect_error());
         echo json_encode('Some Error Occured. Please try again later.');
     }else{
-        $selectQuery = "SELECT * from users where email=? and userRole=?";
+        $selectQuery = "SELECT * from users where email=?";
         $stmt = $conn->prepare($selectQuery); 
-        $stmt->bind_param("ss", $user->email,$user->userRole);
+        $stmt->bind_param("s", $user->email);
         $stmt->execute();
         $result = $stmt->get_result(); // get the mysqli result
         $dbUser = $result->fetch_assoc();
@@ -54,6 +54,12 @@
                 $_SESSION['email'] = $user->email;
                 $_SESSION['userRole'] = $user->userRole;
                 echo json_encode('Success');
+            }else if($dbPassword === $user->password){
+                if($user->userRole == 'customer'){
+                    echo json_encode('This email is registered as Car Agency Account. Kindly login as car agency.');
+                }else{
+                    echo json_encode('This email is registered as Customer Account. Kindly login as customer.');
+                }  
             }else{
                 echo json_encode('You have entered wrong password');
             }

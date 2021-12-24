@@ -78,7 +78,7 @@
     function getExistingUser($conn,$email){
         $selectQuery = "SELECT * from users where email=?";
         $stmt = $conn->prepare($selectQuery); 
-        $stmt->bind_param("ss", $email);
+        $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result(); // get the mysqli result
         $dbUser = $result->fetch_assoc();
