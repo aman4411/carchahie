@@ -1,5 +1,5 @@
 <?php  
-
+    header('Content-Type: application/json; charset=utf-8');
     require_once '../includes/dbconfig.php';
     include '../models/user.php';
     session_start();

@@ -1,5 +1,5 @@
 <?php  
-
+    header('Content-Type: application/json; charset=utf-8');
     include '../models/user.php';
     require_once '../includes/dbconfig.php';
     session_start();
@@ -47,9 +47,15 @@
         die("ERROR: Could not connect. " . mysqli_connect_error());
         echo json_encode('Some Error Occured. Please try again later.');
     }else{
-        $dbUser = getExistingUser($conn,$user->email,$user->userRole);
+        $dbUser = getExistingUser($conn,$user->email);
         if($dbUser){
-            echo json_encode('An account already exists with this email id');
+            if($dbUser['userRole'] == $user->userRole){
+                echo json_encode('An account already exists with this email id');
+            }else if($user->userRole == 'customer'){
+                echo json_encode('An agency account already exists with this email');
+            }else{
+                echo json_encode('A customer account already exists with this email');
+            }    
             exit;
         }
         $insertQuery = "INSERT INTO users (name, email, password,userRole) VALUES (?,?,?,?)";
@@ -69,10 +75,10 @@
     closeDbConnection($conn);
     exit;
    
-    function getExistingUser($conn,$email,$userRole){
-        $selectQuery = "SELECT * from users where email=? and userRole=?";
+    function getExistingUser($conn,$email){
+        $selectQuery = "SELECT * from users where email=?";
         $stmt = $conn->prepare($selectQuery); 
-        $stmt->bind_param("ss", $email,$userRole);
+        $stmt->bind_param("ss", $email);
         $stmt->execute();
         $result = $stmt->get_result(); // get the mysqli result
         $dbUser = $result->fetch_assoc();
