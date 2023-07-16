@@ -1,6 +1,1 @@
-<?php
-/**
- * Here is the serverless function entry
- * for deployment with Vercel.
- */
-require '../index.php';
+<?php require __DIR__ . './../index.php' ?>

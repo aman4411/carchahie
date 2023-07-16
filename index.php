@@ -22,7 +22,7 @@ function handleBookNowButtonClick($dbCar){
            echo "handleBooking(".$path.")";
        }
    }else{
-       echo "redirectToLoginPage()";
+       return "redirectToLoginPage()";
    }
 }
 
@@ -40,22 +40,18 @@ function handleBookNowButtonClick($dbCar){
     </div>
     <div class="row mt-5 mb-5">
 
-        <?php
-        while ($dbCar = $result->fetch_assoc()) {
-        ?>
+        <?php while ($dbCar = $result->fetch_assoc()): ?>
             <div class="col-md-3 xs-mr-5 col-sm-6 item mb-3">
                 <div class="card item-card card-block">
                     <img class="card-img" src="./assets/sample-car.jpg" alt="Photo of sunset">
-                    <h5 class="card-title mt-1 mb-1"><?php echo $dbCar['model'] ?></h5>
-                    <h6 class="mt-3 text-center text-primary"><?php echo $dbCar['number'] ?></h6>
-                    <p class="text-center">Capacity : <?php echo $dbCar['capacity'] ?> Person</p>
-                    <p class="text-center text-danger">Rent : &#8377;<?php echo $dbCar['rent'] ?>/day</p>
+                    <h5 class="card-title mt-1 mb-1"><?= $dbCar['model'] ?></h5>
+                    <h6 class="mt-3 text-center text-primary"><?= $dbCar['number'] ?></h6>
+                    <p class="text-center">Capacity : <?= $dbCar['capacity'] ?> Person</p>
+                    <p class="text-center text-danger">Rent : &#8377;<?= $dbCar['rent'] ?>/day</p>
                     <button class="btn btn-primary" onclick="<?= handleBookNowButtonClick($dbCar)?>">Book Now</button>
                 </div>
             </div>
-        <?php
-        }
-        ?>
+        <?php endwhile; ?>
     </div>
 </div>
 
